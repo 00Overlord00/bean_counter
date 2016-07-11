@@ -1,8 +1,8 @@
 <h2>What type of expense is this?</h2>
-<div ng-controller = 'enterController'>
-  <input type="number" maxlength = "15" placeholder="amount" ng-model = "amountIn"><p>How Much?</p>
+<div>
+  <input type="number" maxlength = "15" placeholder="amount" ng-model = "amountIn" required><p>How Much?</p>
 
- <select ng-model = "categoryIn">
+ <select ng-model = "categoryIn" required>
     <option disabled selected>Category</option>
     <option value = "rent">Rent</option>
     <option value = "utilities">Utilities</option>
@@ -13,13 +13,19 @@
     <option value = "other">Other</option>
 </select>
 <h4>Is this a one-time or recurring expense?</h4>
-<form ng-model = "typeIn">
+<select ng-model = "typeIn" required>
+  <option value = false>One-Time</option>
+  <option value = true>Recurring</option>
+</select>
+<!-- <form ng-model = "typeIn" required>
   <input name='radio' type="radio" value = "false">One-time<br>
   <input name='radio' type="radio" value = "true">Recurring
-</form>
+</form> -->
 <p>On: </p>
 
-<select ng-model = "date_month">
+<!-- <input ng-model = "dateIn" ui-date="{ dateFormat: 'yyyy-mm-dd' }" type = "date"> -->
+
+<select ng-model = "date_month" required>
     <option disabled selected>Month</option>
     <option value = 01>Jan</option>
     <option value = 02>Feb</option>
@@ -34,7 +40,8 @@
     <option value = 11>Nov</option>
     <option value = 12>Dec</option>
 </select>
-<input type = "number" maxlength = "2" placeholder = "Date" ng-model = "date_day">
-<input type = "number" maxlength = "4" placeholder = "Year" ng-model = "date_year">
-<button type="button" ng-click = "submitExpense() ">Submit</button>
+<input type = "number" maxlength = "2" placeholder = "DD" ng-model = "date_day" required>
+<input type = "number" maxlength = "4" placeholder = "YYYY" ng-model = "date_year" required>
+<textarea ng-model = "descIn" maxlength = "30" placeholder = "Description"></textarea>
+<button type="button" ng-click = "submitExpense()">Submit</button>
 </div>

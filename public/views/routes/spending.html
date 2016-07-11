@@ -2,39 +2,39 @@
 <div>
     <p>Track from: <p>
       <select>
-        <option disabled selected>Month</option>
-        <option id = 01>Jan</option>
-        <option id = 02>Feb</option>
-        <option id = 03>Mar</option>
-        <option id = 04>Apr</option>
-        <option id = 05>May</option>
-        <option id = 06>Jun</option>
-        <option id = 07>Jul</option>
-        <option id = 08>Aug</option>
-        <option id = 09>Sep</option>
-        <option id = 10>Oct</option>
-        <option id = 11>Nov</option>
-        <option id = 12>Dec</option>
+        <option ng-model = "min_month" disabled selected>Month</option>
+        <option value = 01>Jan</option>
+        <option value = 02>Feb</option>
+        <option value = 03>Mar</option>
+        <option value = 04>Apr</option>
+        <option value = 05>May</option>
+        <option value = 06>Jun</option>
+        <option value = 07>Jul</option>
+        <option value = 08>Aug</option>
+        <option value = 09>Sep</option>
+        <option value = 10>Oct</option>
+        <option value = 11>Nov</option>
+        <option value = 12>Dec</option>
       </select>
-      <input type = "number" maxlength = "2" placeholder = "Day">
-      <input type = "number" maxlength = "4" placeholder = "Year">
+      <input type = "number" maxlength = "2" ng-model = "min_day" placeholder = "Day">
+      <input type = "number" maxlength = "4" ng-model = "min_year" placeholder = "Year">
       <p>To:</p>
       <select>
-        <option disabled selected>Month</option>
-        <option id = 01>Jan</option>
-        <option id = 02>Feb</option>
-        <option id = 03>Mar</option>
-        <option id = 04>Apr</option>
-        <option id = 05>May</option>
-        <option id = 06>Jun</option>
-        <option id = 07>Jul</option>
-        <option id = 08>Aug</option>
-        <option id = 09>Sep</option>
-        <option id = 10>Oct</option>
-        <option id = 11>Nov</option>
-        <option id = 12>Dec</option>
+        <option ng-model = "max_month" disabled selected>Month</option>
+        <option value = 01>Jan</option>
+        <option value = 02>Feb</option>
+        <option value = 03>Mar</option>
+        <option value = 04>Apr</option>
+        <option value = 05>May</option>
+        <option value = 06>Jun</option>
+        <option value = 07>Jul</option>
+        <option value = 08>Aug</option>
+        <option value = 09>Sep</option>
+        <option value = 10>Oct</option>
+        <option value = 11>Nov</option>
+        <option value = 12>Dec</option>
       </select>
-      <input type = "number" maxlength = "2" placeholder = "Day">
-      <input type = "number" maxlength = "4" placeholder = "Year">
-      <button type="button">Go</button>
+      <input type = "number" maxlength = "2" ng-model = "max_day" placeholder = "Day">
+      <input type = "number" maxlength = "4" ng-model = "max_year" placeholder = "Year">
+      <button type="button"ng-click = "showMe()">Go</button>
 </div>
