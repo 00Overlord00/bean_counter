@@ -1,0 +1,57 @@
+input {
+  border-color: orange;
+  color: blue;
+}
+
+textarea {
+  border-color: orange;
+}
+
+select {
+  border-color: orange;
+  background-color: blue;
+  color: white;
+}
+
+option {
+  background-color: blue;
+  color: white;
+}
+
+button {
+  background-color: blue;
+  color: white;
+}
+
+#navText {
+  background-color: blue;
+  color: white;
+  width: 20%;
+}
+
+p {
+  color: blue;
+}
+
+h2 {
+  color: white;
+  background-color: blue;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  width: 27%;
+  margin-left: 30%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+h3 {
+  color: blue;
+}
+
+h4 {
+  color: blue;
+}
+
+#navBar {
+  background-color: orange;
+}

@@ -1,8 +1,8 @@
 <h2>Track Spending</h2>
 <div>
     <p>Track from: <p>
-      <select>
-        <option ng-model = "min_month" disabled selected>Month</option>
+      <select ng-model = "min_month">
+        <option disabled selected>Month</option>
         <option value = 01>Jan</option>
         <option value = 02>Feb</option>
         <option value = 03>Mar</option>
@@ -19,8 +19,8 @@
       <input type = "number" maxlength = "2" ng-model = "min_day" placeholder = "Day">
       <input type = "number" maxlength = "4" ng-model = "min_year" placeholder = "Year">
       <p>To:</p>
-      <select>
-        <option ng-model = "max_month" disabled selected>Month</option>
+      <select ng-model = "max_month">
+        <option disabled selected>Month</option>
         <option value = 01>Jan</option>
         <option value = 02>Feb</option>
         <option value = 03>Mar</option>
@@ -36,5 +36,5 @@
       </select>
       <input type = "number" maxlength = "2" ng-model = "max_day" placeholder = "Day">
       <input type = "number" maxlength = "4" ng-model = "max_year" placeholder = "Year">
-      <button type="button"ng-click = "showMe()">Go</button>
+      <button type="button" ng-click = "showMe()">Go</button>
 </div>

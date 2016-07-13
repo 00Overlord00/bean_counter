@@ -19,18 +19,28 @@ app.get( '/', function( req, res ) {  //Base view page.
   res.sendFile( path.resolve( 'public/views/base.html' ) );
 });
 
-app.get( '/trackSpending', function( req, res ) {  //get path.
+app.post( '/trackSpending', function( req, res ) {  //get path.
+    var requestedInfo = [];
   pg.connect( connectionString, function( err, client, done ) {
-    var query = client.query( 'SELECT * FROM expenses WHERE ...' );
+    console.log( '/trackSpending received a query between: ', req.body.minQuery, ' and: ', req.body.maxQuery, '.' );
+    var query = client.query( '( SELECT * FROM expenses WHERE date >  $1  AND date < $2 )', [ req.body.minQuery, req.body.maxQuery ] );
+
+    // var dateQuery = client.query( 'SELECT * FROM expenses WHERE date > req.body.minQuery  AND date < req.body.maxQuery' );
+    query.on( 'row', function( row ){
+      requestedInfo.push( row );
+    });  //End dateQuery row push.
+    query.on( 'end', function(){
+      return res.json( requestedInfo );
+    });  //End dateQuery end function.
   });  //End pg.connect
-});  //End app.get
+});  //End app.post
 
 app.post( '/inputExpense', urlencodedParser, function( req, res ) {
-  console.log('post on server', req.body);
+  // console.log('post on server', req.body);
   //post path.
   pg.connect( connectionString, function( err, client, done ) {
-    console.log( 'POST received: ' + req.body.category + ' ' + req.body.amount + ' ' + req.body.yyyy + '.' );
-    client.query( 'INSERT INTO expenses ( category, amount, description, recurring, date_day, date_month, date_year ) VALUES ( $1, $2, $3, $4, $5, $6, $7 )', [ req.body.category, req.body.amount, req.body.description, req.body.type, req.body.dd, req.body.mm, req.body.yyyy ] );
+    console.log( '/inputExpense received: ' + req.body.category + ' ' + req.body.amount + ' ' + req.body.date, '.' );
+    client.query( 'INSERT INTO expenses ( category, amount, description, date, recurring ) VALUES ( $1, $2, $3, $4, $5 )', [ req.body.category, req.body.amount, req.body.description, req.body.date, req.body.type ] );
     res.end();
   });  //End pg.connect
 });  //end app.post
