@@ -27,6 +27,39 @@ button {
   background-color: blue;
   color: white;
   width: 20%;
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-left: 33%;
+}
+
+#spending {
+  margin-left: 23%;
+  color: white;
+  background-color: blue;
+  padding-left: 1px;
+  padding-top: 1px;
+  padding-right: 1px;
+  padding-bottom: 1px;
+}
+
+#view {
+  color: white;
+  background-color: blue;
+  padding-left: 1px;
+  padding-top: 1px;
+  padding-right: 1px;
+  padding-bottom: 1px;
+}
+
+#enter {
+  color: white;
+  background-color: blue;
+  padding-left: 1px;
+  padding-top: 1px;
+  padding-right: 1px;
+  padding-bottom: 1px;
 }
 
 p {

@@ -33,11 +33,13 @@ myApp.controller( 'spendingController', [ '$scope', '$http', function( $scope, $
 $http({
   method: 'POST',
   url: '/trackSpending',
-  data: queryObj,
+  data: queryObj
 }).then( function( response ){
-  $scope.alltheDates = response.data;
-  console.log("response: " + response.data );
+  $scope.alltheDates = response;
+  console.log("response: ", response);
+  console.log( "response contains: ", response.data[0].amount, response.data[0].description, "length is: ", response.data.length );
 });
+
 $scope.min_year = '';
 $scope.min_month = '';
 $scope.min_day = '';       //Reset input fields.
