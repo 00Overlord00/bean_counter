@@ -1,4 +1,4 @@
-<h2>What type of expense is this?</h2>
+<h2 id = "enterHead">What type of expense is this?</h2>
 <div>
   <input type="number" maxlength = "15" placeholder="amount" ng-model = "amountIn" required><p>How Much?</p>
 
@@ -41,7 +41,7 @@
     <option value = 12>Dec</option>
 </select>
 <input type = "number" maxlength = "2" placeholder = "DD" ng-model = "date_day" required>
-<input type = "number" maxlength = "4" placeholder = "YYYY" ng-model = "date_year" required>
+<input type = "number" maxlength = "4" placeholder = "YYYY" ng-model = "date_year" required><br>
 <textarea ng-model = "descIn" maxlength = "30" placeholder = "Description"></textarea>
 <button type="button" ng-click = "submitExpense()">Submit</button>
 </div>

@@ -1,6 +1,6 @@
 <h2>View Expenses</h2>
 <p>Show me</p>
-<select>
+<select ng-model = "catDefine">
   <option disabled selected>Expenses</option>
   <option>All</option>
   <option>All Rent</option>
@@ -12,7 +12,7 @@
   <option>All Other</option>
 </select>
 <p>Expenses from: </p>
-<select>
+<select ng-model = "minMonthDefine">
   <option disabled selected>Month</option>
   <option id = 01>Jan</option>
   <option id = 02>Feb</option>
@@ -27,10 +27,10 @@
   <option id = 11>Nov</option>
   <option id = 12>Dec</option>
 </select>
-<input type = "number" maxlength = "2" placeholder = "Day">
-<input type = "number" maxlength = "4" placeholder = "Year">
+<input type = "number" maxlength = "2" placeholder = "Day" ng-model = "mindayDefine">
+<input type = "number" maxlength = "4" placeholder = "Year" ng-model = "minyearDefine">
 <p>To: </p>
-<select>
+<select ng-model = "maxmonthDefine">
   <option disabled selected>Month</option>
   <option id = 01>Jan</option>
   <option id = 02>Feb</option>
@@ -45,6 +45,6 @@
   <option id = 11>Nov</option>
   <option id = 12>Dec</option>
 </select>
-<input type = "number" maxlength = "2" placeholder = "Day">
-<input type = "number" maxlength = "4" placeholder = "Year">
-<button type="button">Go</button>
+<input type = "number" maxlength = "2" placeholder = "Day" ng-model = "maxdayDefine">
+<input type = "number" maxlength = "4" placeholder = "Year" ng-model = "maxyearDefine">
+<button type="button" ng-click = "getForMe()">Go</button>

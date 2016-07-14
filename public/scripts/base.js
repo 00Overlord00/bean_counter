@@ -35,10 +35,9 @@ $http({
   url: '/trackSpending',
   data: queryObj
 }).then( function( response ){
-  $scope.alltheDates = response;
+  $scope.alltheDates =   sortingHat( response.data );
   // console.log("response: ", response);
   // console.log( "response contains: ", response.data[0].amount, response.data[0].description, "length is: ", response.data.length );
-  sortingHat( response.data );
 });
 
 $scope.min_year = '';
@@ -50,45 +49,56 @@ $scope.max_day = '';
   };  //End showMe().
 
 var sortingHat = function( array ) {
-  categories = {
-    rent: 0,
-    utilities: 0,
-    miscBills: 0,
-    transportation: 0,
-    groceries: 0,
-    entertainment: 0,
-    other: 0
+  // console.dir(array);
+  // console.log( 'Response values in sortingHat, prior to "for loop": ', array[0].category, ': ', array[0].amount, ', ', array[1].category, ': ',array[1].amount, ', ', array[2].category, ': ', array[2].amount, ', ', array[3].category, ': ', array[3].amount );
+categories = {
+    Rent: 0,
+    Utilities: 0,
+    MiscBills: 0,
+    Transportation: 0,
+    Groceries: 0,
+    Entertainment: 0,
+    Other: 0
   };
-  for( var i = 0; i < array.length; i++ ) {
-    switch( array[i] ){
-      case array[i].category = 'Rent':
-        categories.rent += array[i].amount;
+  // console.log( array.length );
+  for( i = 0; i < array.length; i++ ) {
+    // console.log( 'In sortingHat, prior to switch: ', array[i].category );
+    switch( array[i].category ) {
+      case "Rent":
+      // console.log( 'Case Rent succeeded.' );
+        categories.Rent += array[i].amount;
         break;
-      case array[i].category = 'Utilities':
-        categories.utilities += array[i].amount;
+      case "utilities":
+      // console.log( 'Case Utilities succeeded.' );
+        categories.Utilities += array[i].amount;
         break;
-      case array[i].category = 'Misc. Bills':
-        categories.miscBills += array[i].amount;
+      case "misc. Bills":
+      // console.log( 'Case Misc. Bills succeeded.' );
+        categories.MiscBills += array[i].amount;
         break;
-      case array[i].category = 'Transportation':
-        categories.transportation += array[i].amount;
+      case "Transportation":
+      // console.log( 'Case Transportation succeeded.' );
+        categories.Transportation += array[i].amount;
         break;
-      case array[i].category = 'Groceries':
-        categories.groceries += array[i].amount;
+      case "groceries":
+      // console.log( 'Case Groceries succeeded.' );
+        categories.Groceries += array[i].amount;
         break;
-      case array[i].category = 'Entertainment':
-        categories.entertainment += array[i].amount;
+      case "Entertainment":
+      // console.log( 'Case Entertainment succeeded.' );
+        categories.Entertainment += array[i].amount;
         break;
-      case array[i].category = 'Other':
-        categories.other += array[i].amount;
-    return categories;
+      case "other":
+      // console.log( 'Case Other succeeded.' );
+        categories.Other += array[i].amount;
+        break;
+      default:
+        console.log( array[i].category, ': ', array[i].amount, " defaulted.");
+        break;
   }  //End switch.
-  console.log( categories.rent, categories.entertainment );
-  return categories;
 }  //End for loop.
-// console.log( categories.rent );
+  console.log( 'Behold! Your totals: ', categories );
 };  //End sortingHat().
-
 }]);  //End spendingController
 
 myApp.controller( 'enterController', [ '$scope', '$http', function( $scope, $http ) {  //All functions to be used on "Enter Expenses" page.
@@ -120,4 +130,5 @@ myApp.controller( 'enterController', [ '$scope', '$http', function( $scope, $htt
 
 myApp.controller( 'viewController', [ '$scope', '$http', function( $scope, $http ) {  //All functions to be used on "View All Expenses" page.
   console.log( 'viewController active.');
+
 }]);  //End viewController.
