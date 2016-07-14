@@ -36,8 +36,9 @@ $http({
   data: queryObj
 }).then( function( response ){
   $scope.alltheDates = response;
-  console.log("response: ", response);
-  console.log( "response contains: ", response.data[0].amount, response.data[0].description, "length is: ", response.data.length );
+  // console.log("response: ", response);
+  // console.log( "response contains: ", response.data[0].amount, response.data[0].description, "length is: ", response.data.length );
+  sortingHat( response.data );
 });
 
 $scope.min_year = '';
@@ -47,6 +48,47 @@ $scope.max_year = '';
 $scope.max_month = '';
 $scope.max_day = '';
   };  //End showMe().
+
+var sortingHat = function( array ) {
+  categories = {
+    rent: 0,
+    utilities: 0,
+    miscBills: 0,
+    transportation: 0,
+    groceries: 0,
+    entertainment: 0,
+    other: 0
+  };
+  for( var i = 0; i < array.length; i++ ) {
+    switch( array[i] ){
+      case array[i].category = 'Rent':
+        categories.rent += array[i].amount;
+        break;
+      case array[i].category = 'Utilities':
+        categories.utilities += array[i].amount;
+        break;
+      case array[i].category = 'Misc. Bills':
+        categories.miscBills += array[i].amount;
+        break;
+      case array[i].category = 'Transportation':
+        categories.transportation += array[i].amount;
+        break;
+      case array[i].category = 'Groceries':
+        categories.groceries += array[i].amount;
+        break;
+      case array[i].category = 'Entertainment':
+        categories.entertainment += array[i].amount;
+        break;
+      case array[i].category = 'Other':
+        categories.other += array[i].amount;
+    return categories;
+  }  //End switch.
+  console.log( categories.rent, categories.entertainment );
+  return categories;
+}  //End for loop.
+// console.log( categories.rent );
+};  //End sortingHat().
+
 }]);  //End spendingController
 
 myApp.controller( 'enterController', [ '$scope', '$http', function( $scope, $http ) {  //All functions to be used on "Enter Expenses" page.
