@@ -1,6 +1,6 @@
 <h2>Track Spending</h2>
-<div>
-    <p>Track from: <p>
+<div id = "spendingSelect">
+    <h4>Track from: </h4>
       <select ng-model = "min_month">
         <option disabled selected>Month</option>
         <option value = 01>Jan</option>
@@ -18,9 +18,9 @@
       </select>
       <input type = "number" maxlength = "2" ng-model = "min_day" placeholder = "Day">
       <input type = "number" maxlength = "4" ng-model = "min_year" placeholder = "Year">
-      <p>To:</p>
+      <h4>To:</h4>
       <select ng-model = "max_month">
-        <option disabled selected>Month</option>
+        <option selected>Month</option>
         <option value = 01>Jan</option>
         <option value = 02>Feb</option>
         <option value = 03>Mar</option>
@@ -40,6 +40,6 @@
 </div>
 <div id = "spendingDisplay">
   <h2>Your Spending:</h2>
-  <ul>
-    <li ng-repeat = "date in alltheDates">
+  <ul ng-repeat = "date in alltheDates">
+    <li>{{ date.category }}: {{ date.amount }}</li>
 </div>

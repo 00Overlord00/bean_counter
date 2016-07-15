@@ -35,10 +35,10 @@ $http({
   url: '/trackSpending',
   data: queryObj
 }).then( function( response ){
-  $scope.alltheDates =   sortingHat( response.data );
+  $scope.alltheDates = response.data;
   // console.log("response: ", response);
   // console.log( "response contains: ", response.data[0].amount, response.data[0].description, "length is: ", response.data.length );
-});
+});  //End response function.
 
 $scope.min_year = '';
 $scope.min_month = '';
@@ -130,5 +130,47 @@ myApp.controller( 'enterController', [ '$scope', '$http', function( $scope, $htt
 
 myApp.controller( 'viewController', [ '$scope', '$http', function( $scope, $http ) {  //All functions to be used on "View All Expenses" page.
   console.log( 'viewController active.');
+  $scope.getForMe = function() {
+    var minDate = $scope.minyearDefine + '-' + $scope.minMonthDefine + '-' + $scope.mindayDefine;
+    var maxDate = $scope.maxyearDefine + '-' + $scope.maxmonthDefine + '-' + $scope.maxdayDefine;
+    var queryObj = {
+      minQuery: minDate,
+      maxQuery: maxDate
+    };  //End queryObj.
+    $http({
+      method: 'POST',
+      url: '/viewExpenses',
+      data: queryObj
+    }).then( function( response ) {
+      console.dir( response.data );
+      $scope.alltheExpenses = response.data;
+    });  //End response function.
+
+    //Reset Input fields here.
+
+  };  //End getForMe.
+
+  var expenseDisplay = function( array ) {
+    var paymentField = {
+      amount: 0,
+      description: '',
+      category: '',
+      date: '',
+      recurring: '',
+      id: ''
+    };
+  for( i = 0; i < array.length; i++ ) {
+    paymentField.amount = array.amount;
+    paymentField.description = array.description;
+    paymentField.category = array.category;
+    paymentField.date = array.date;
+    if( array.recurring === true ) {
+    paymentField.recurring = 'Recurring';
+    } else { paymentField.recurring = 'Non-recurring';
+}
+    paymentField.id = array.id;
+  }
+  return paymentField;
+  };  //End expenseDisplay.
 
 }]);  //End viewController.

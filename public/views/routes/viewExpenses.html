@@ -1,4 +1,6 @@
 <h2>View Expenses</h2>
+<div id = "viewExSelect">
+  <div id = "spaceMod">
 <p>Show me</p>
 <select ng-model = "catDefine">
   <option disabled selected>Expenses</option>
@@ -48,3 +50,10 @@
 <input type = "number" maxlength = "2" placeholder = "Day" ng-model = "maxdayDefine">
 <input type = "number" maxlength = "4" placeholder = "Year" ng-model = "maxyearDefine">
 <button type="button" ng-click = "getForMe()">Go</button>
+</div>
+</div>
+<div id = "viewExDisp">
+  <ul ng-repeat = "expense in alltheExpenses">
+    <li> {{ expense.description }}, {{ expense.amount }}, {{ expense.category }}, {{ expense.date }}</li>
+  </ul>
+</div>

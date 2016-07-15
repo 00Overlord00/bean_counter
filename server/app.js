@@ -20,17 +20,14 @@ app.get( '/', function( req, res ) {  //Base view page.
 });
 
 app.post( '/trackSpending', function( req, res ) {  //get path.
-  console.log(req.body);
+  console.log( req.body );
     var requestedInfo = [];
   pg.connect( connectionString, function( err, client, done ) {
     console.log( '/trackSpending received a query between: ', req.body.minQuery, ' and: ', req.body.maxQuery, '.' );
     var min = req.body.minQuery;
     var max = req.body.maxQuery;
     var query = client.query( '( SELECT * FROM expenses WHERE date > $1  AND date < $2 )', [ min, max ] );
-    // console.log(query);
-
     query.on( 'row', function( row ){
-      // console.log( row );
       requestedInfo.push( row );
     });  //End dateQuery row push.
     query.on( 'end', function(){
@@ -48,3 +45,20 @@ app.post( '/inputExpense', urlencodedParser, function( req, res ) {
     res.end();
   });  //End pg.connect
 });  //End /inputExpense
+
+app.post( '/viewExpenses', function( req, res ) {
+  console.log( req.body );
+  var bundledInfo = [];
+  pg.connect( connectionString, function( err, client, done ) {
+    console.log( '/viewExpense received a query between: ', req.body.minQuery, ' and: ', req.body.maxQuery, '.' );
+        var min = req.body.minQuery;
+        var max = req.body.maxQuery;
+      var query = client.query( '( SELECT * FROM expenses WHERE date > $1 AND date < $2 )', [ min, max ] );
+    query.on( 'row', function( row ) {
+      bundledInfo.push( row );
+    });
+    query.on( 'end', function() {
+      return res.json( bundledInfo );
+    });
+  });
+});
