@@ -62,3 +62,17 @@ app.post( '/viewExpenses', function( req, res ) {
     });
   });
 });
+
+app.delete( '/deleteRoute', function( req, res ) {
+  console.log( '/deleteRoute got a hit from client.' );
+  pg.connect( connectionString, function( err, client, done ) {
+    var query = client.query( '( THIS AREA IS RESERVED FOR SQL SYNTAX )', [values, will, be, here] );
+  });
+});
+
+app.put( '/updateRoute', function( req, res ) {
+  console.log( '/updateRoute got a hit from client.' );
+  pg.connect( connectionString, function( err, client, done ) {
+    var query = client.query( '( THIS AREA IS RESERVED FOR SQUL SYNTAX )', [values, will, be, here] );
+  });
+});

@@ -173,4 +173,15 @@ myApp.controller( 'viewController', [ '$scope', '$http', function( $scope, $http
   return paymentField;
   };  //End expenseDisplay.
 
+  $scope.deleteMe = function() {
+    var criterium = {
+      id: stuff
+    };
+    $http({
+      method: 'DELETE',
+      url: '/deleteRoute',
+      data: criterium
+    });
+  };  //End deleteMe.
+
 }]);  //End viewController.

@@ -54,6 +54,6 @@
 </div>
 <div id = "viewExDisp">
   <ul ng-repeat = "expense in alltheExpenses">
-    <li> {{ expense.description }}, {{ expense.amount }}, {{ expense.category }}, {{ expense.date }}</li>
+    <li> {{ expense.description }}, {{ expense.amount }}, {{ expense.category }}, {{ expense.date }} <div id = "viewExButton"><button type="button" ng-click = "editRow()" name="button">Edit</button> <button type="button" ng-click = "deleteRow()" name="button">Delete</button></div></li>
   </ul>
 </div>
