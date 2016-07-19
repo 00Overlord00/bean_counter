@@ -43,14 +43,15 @@ app.post( '/inputExpense', urlencodedParser, function( req, res ) {
     console.log( '/inputExpense received: ' + req.body.category + ' ' + req.body.amount + ' ' + req.body.date, '.' );
     client.query( 'INSERT INTO expenses ( category, amount, description, date, recurring ) VALUES ( $1, $2, $3, $4, $5 )', [ req.body.category, req.body.amount, req.body.description, req.body.date, req.body.type ] );
     res.end();
+    done();
   });  //End pg.connect
 });  //End /inputExpense
 
 app.post( '/viewExpenses', function( req, res ) {
-  console.log( req.body );
+  // console.log( req.body );
   var bundledInfo = [];
   pg.connect( connectionString, function( err, client, done ) {
-    console.log( '/viewExpense received a query between: ', req.body.minQuery, ' and: ', req.body.maxQuery, '.' );
+    // console.log( '/viewExpense received a query between: ', req.body.minQuery, ' and: ', req.body.maxQuery, '.' );
         var min = req.body.minQuery;
         var max = req.body.maxQuery;
       var query = client.query( '( SELECT * FROM expenses WHERE date > $1 AND date < $2 )', [ min, max ] );
@@ -60,19 +61,21 @@ app.post( '/viewExpenses', function( req, res ) {
     query.on( 'end', function() {
       return res.json( bundledInfo );
     });
+    done();
   });
 });
 
-app.delete( '/deleteRoute', function( req, res ) {
-  console.log( '/deleteRoute got a hit from client.' );
+app.post( '/removeRoute', function( req, res ) {
+  console.log( '/deleteRoute got a hit from client.', req.body.id );
   pg.connect( connectionString, function( err, client, done ) {
-    var query = client.query( '( THIS AREA IS RESERVED FOR SQL SYNTAX )', [values, will, be, here] );
+    client.query( '( DELETE FROM expenses WHERE id = ', req.body.id, ' )' );
   });
+  console.log( req.body.id );
 });
 
 app.put( '/updateRoute', function( req, res ) {
   console.log( '/updateRoute got a hit from client.' );
   pg.connect( connectionString, function( err, client, done ) {
-    var query = client.query( '( THIS AREA IS RESERVED FOR SQUL SYNTAX )', [values, will, be, here] );
+    var query = client.query( '( THIS AREA IS RESERVED FOR SQL SYNTAX )', [values, will, be, here] );
   });
 });

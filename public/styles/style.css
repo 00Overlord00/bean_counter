@@ -1,3 +1,7 @@
+body {
+  font-family: Lucida, charcoal, sans-serif;
+}
+
 input {
   border-radius: 20px;
   padding-left: 5px;
@@ -128,6 +132,9 @@ li {
   border-radius: 20px;
   width: 15%;
   padding-left: 10px;
+  border-style: solid;
+  border-color: white;
+  margin-bottom: 2px;
 }
 
 #spendingSelect {
@@ -159,5 +166,9 @@ li {
 }
 
 #viewExButton {
+
+}
+
+#viewExDel {
 
 }

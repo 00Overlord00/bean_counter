@@ -24,8 +24,8 @@ myApp.config( [ '$routeProvider', function( $routeProvider ) {
 myApp.controller( 'spendingController', [ '$scope', '$http', function( $scope, $http ) {  //All functions to be used on "Track Spending" page.
   console.log( 'spendingController active.' );
   $scope.showMe = function() {
-    var minDate = $scope.min_year + '-' + $scope.min_month + '-' + $scope.min_day;
-    var maxDate = $scope.max_year + '-' + $scope.max_month + '-' + $scope.max_day;
+    var minDate = $scope.dateOne;
+    var maxDate = $scope.dateTwo;
     var queryObj = {
       minQuery: minDate,
       maxQuery: maxDate
@@ -35,8 +35,8 @@ $http({
   url: '/trackSpending',
   data: queryObj
 }).then( function( response ){
-  $scope.alltheDates = response.data;
-  // console.log("response: ", response);
+  $scope.alltheDates = sortingHat( response.data );
+  // console.log("response: ", response.data);
   // console.log( "response contains: ", response.data[0].amount, response.data[0].description, "length is: ", response.data.length );
 });  //End response function.
 
@@ -48,8 +48,8 @@ $scope.max_month = '';
 $scope.max_day = '';
   };  //End showMe().
 
-var sortingHat = function( array ) {
-  // console.dir(array);
+sortingHat = function( array ) {
+  console.dir('Sorting hat after function sortingHat', sortingHat);
   // console.log( 'Response values in sortingHat, prior to "for loop": ', array[0].category, ': ', array[0].amount, ', ', array[1].category, ': ',array[1].amount, ', ', array[2].category, ': ', array[2].amount, ', ', array[3].category, ': ', array[3].amount );
 categories = {
     Rent: 0,
@@ -64,11 +64,11 @@ categories = {
   for( i = 0; i < array.length; i++ ) {
     // console.log( 'In sortingHat, prior to switch: ', array[i].category );
     switch( array[i].category ) {
-      case "Rent":
+      case "Rent" || "rent":
       // console.log( 'Case Rent succeeded.' );
         categories.Rent += array[i].amount;
         break;
-      case "utilities":
+      case "Utilities" || "utilities":
       // console.log( 'Case Utilities succeeded.' );
         categories.Utilities += array[i].amount;
         break;
@@ -76,19 +76,19 @@ categories = {
       // console.log( 'Case Misc. Bills succeeded.' );
         categories.MiscBills += array[i].amount;
         break;
-      case "Transportation":
+      case "Transportation" || "transportation":
       // console.log( 'Case Transportation succeeded.' );
         categories.Transportation += array[i].amount;
         break;
-      case "groceries":
+      case "Groceries" || "groceries":
       // console.log( 'Case Groceries succeeded.' );
         categories.Groceries += array[i].amount;
         break;
-      case "Entertainment":
+      case "Entertainment" || "entertainment":
       // console.log( 'Case Entertainment succeeded.' );
         categories.Entertainment += array[i].amount;
         break;
-      case "other":
+      case "Other" || "other":
       // console.log( 'Case Other succeeded.' );
         categories.Other += array[i].amount;
         break;
@@ -97,19 +97,21 @@ categories = {
         break;
   }  //End switch.
 }  //End for loop.
-  console.log( 'Behold! Your totals: ', categories );
+console.log( categories );
+return categories;
 };  //End sortingHat().
 }]);  //End spendingController
 
 myApp.controller( 'enterController', [ '$scope', '$http', function( $scope, $http ) {  //All functions to be used on "Enter Expenses" page.
   console.log( 'enterController active.' );
   $scope.submitExpense = function() {
+    // console.log( $scope.dateIn );
     var newExpense = {
       category: $scope.categoryIn,
       amount: $scope.amountIn,
       description: $scope.descIn,
       type: $scope.typeIn,
-      date: $scope.date_year + '-' + $scope.date_month + '-' + $scope.date_day
+      date: $scope.dateIn  //$scope.date_year + '-' + $scope.date_month + '-' + $scope.date_day
     };  //End newExpense.
     console.log(newExpense);
     $http({
@@ -131,8 +133,8 @@ myApp.controller( 'enterController', [ '$scope', '$http', function( $scope, $htt
 myApp.controller( 'viewController', [ '$scope', '$http', function( $scope, $http ) {  //All functions to be used on "View All Expenses" page.
   console.log( 'viewController active.');
   $scope.getForMe = function() {
-    var minDate = $scope.minyearDefine + '-' + $scope.minMonthDefine + '-' + $scope.mindayDefine;
-    var maxDate = $scope.maxyearDefine + '-' + $scope.maxmonthDefine + '-' + $scope.maxdayDefine;
+    var minDate = $scope.mindateDefine;
+    var maxDate = $scope.maxdateDefine;
     var queryObj = {
       minQuery: minDate,
       maxQuery: maxDate
@@ -173,13 +175,13 @@ myApp.controller( 'viewController', [ '$scope', '$http', function( $scope, $http
   return paymentField;
   };  //End expenseDisplay.
 
-  $scope.deleteMe = function() {
+  $scope.deleteRow = function() {
     var criterium = {
-      id: stuff
+      id: expense.id
     };
     $http({
-      method: 'DELETE',
-      url: '/deleteRoute',
+      method: 'POST',
+      url: '/removeRoute',
       data: criterium
     });
   };  //End deleteMe.

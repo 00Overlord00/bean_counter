@@ -4,13 +4,13 @@
 
  <select ng-model = "categoryIn" required>
     <option disabled selected>Category</option>
-    <option value = "rent">Rent</option>
-    <option value = "utilities">Utilities</option>
+    <option value = "Rent">Rent</option>
+    <option value = "Utilities">Utilities</option>
     <option value = "misc. Bills">Misc. Bills</option>
-    <option value = "transportation">Transportation</option>
-    <option value = "groceries">Groceries</option>
-    <option value = "entertainment">Entertainment</option>
-    <option value = "other">Other</option>
+    <option value = "Transportation">Transportation</option>
+    <option value = "Groceries">Groceries</option>
+    <option value = "Entertainment">Entertainment</option>
+    <option value = "Other">Other</option>
 </select>
 <h4>Is this a one-time or recurring expense?</h4>
 <select ng-model = "typeIn" required>
@@ -23,9 +23,9 @@
 </form> -->
 <p>On: </p>
 
-<!-- <input ng-model = "dateIn" ui-date="{ dateFormat: 'yyyy-mm-dd' }" type = "date"> -->
+<input ng-model = "dateIn" ui-date="{ dateFormat: 'yyyy-mm-dd' }" type = "date">
 
-<select ng-model = "date_month" required>
+<!-- <select ng-model = "date_month" required>
     <option disabled selected>Month</option>
     <option value = 01>Jan</option>
     <option value = 02>Feb</option>
@@ -41,7 +41,7 @@
     <option value = 12>Dec</option>
 </select>
 <input type = "number" maxlength = "2" placeholder = "DD" ng-model = "date_day" required>
-<input type = "number" maxlength = "4" placeholder = "YYYY" ng-model = "date_year" required><br>
+<input type = "number" maxlength = "4" placeholder = "YYYY" ng-model = "date_year" required><br> -->
 <textarea ng-model = "descIn" maxlength = "30" placeholder = "Description"></textarea>
 <button type="button" ng-click = "submitExpense()">Submit</button>
 </div>

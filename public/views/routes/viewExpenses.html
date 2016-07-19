@@ -14,7 +14,8 @@
   <option>All Other</option>
 </select>
 <p>Expenses from: </p>
-<select ng-model = "minMonthDefine">
+<input ng-model = "mindateDefine" type = "date" ui-date="{ dateFormat: 'yyyy-mm-dd' }">
+<!-- <select ng-model = "minMonthDefine">
   <option disabled selected>Month</option>
   <option id = 01>Jan</option>
   <option id = 02>Feb</option>
@@ -30,9 +31,10 @@
   <option id = 12>Dec</option>
 </select>
 <input type = "number" maxlength = "2" placeholder = "Day" ng-model = "mindayDefine">
-<input type = "number" maxlength = "4" placeholder = "Year" ng-model = "minyearDefine">
+<input type = "number" maxlength = "4" placeholder = "Year" ng-model = "minyearDefine"> -->
 <p>To: </p>
-<select ng-model = "maxmonthDefine">
+<input ng-model = "maxdateDefine" type = "date" ui-date="{ dateFormat: 'yyyy-mm-dd' }">
+<!-- <select ng-model = "maxmonthDefine">
   <option disabled selected>Month</option>
   <option id = 01>Jan</option>
   <option id = 02>Feb</option>
@@ -48,12 +50,12 @@
   <option id = 12>Dec</option>
 </select>
 <input type = "number" maxlength = "2" placeholder = "Day" ng-model = "maxdayDefine">
-<input type = "number" maxlength = "4" placeholder = "Year" ng-model = "maxyearDefine">
+<input type = "number" maxlength = "4" placeholder = "Year" ng-model = "maxyearDefine"> -->
 <button type="button" ng-click = "getForMe()">Go</button>
 </div>
 </div>
 <div id = "viewExDisp">
   <ul ng-repeat = "expense in alltheExpenses">
-    <li> {{ expense.description }}, {{ expense.amount }}, {{ expense.category }}, {{ expense.date }} <div id = "viewExButton"><button type="button" ng-click = "editRow()" name="button">Edit</button> <button type="button" ng-click = "deleteRow()" name="button">Delete</button></div></li>
+    <li> {{ expense.description }}, {{ expense.amount }}, {{ expense.category }}, {{ expense.date }} <div id = "viewExButton"><button type="button" ng-click = "editRow()" name="button">Edit</button> <button type="button" id = "vieExDel" ng-click = "deleteRow()" name="button">Delete</button></div></li>
   </ul>
 </div>

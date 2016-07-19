@@ -1,7 +1,8 @@
 <h2>Track Spending</h2>
 <div id = "spendingSelect">
     <h4>Track from: </h4>
-      <select ng-model = "min_month">
+    <input ng-model = 'dateOne' type="date" ui-date="{ dateFormat: 'yyyy-mm-dd' }">
+      <!-- <select ng-model = "min_month">
         <option disabled selected>Month</option>
         <option value = 01>Jan</option>
         <option value = 02>Feb</option>
@@ -17,9 +18,10 @@
         <option value = 12>Dec</option>
       </select>
       <input type = "number" maxlength = "2" ng-model = "min_day" placeholder = "Day">
-      <input type = "number" maxlength = "4" ng-model = "min_year" placeholder = "Year">
+      <input type = "number" maxlength = "4" ng-model = "min_year" placeholder = "Year"> -->
       <h4>To:</h4>
-      <select ng-model = "max_month">
+      <input type = "date" ng-model = "dateTwo" ui-date = "{ dateFormat: 'yyyy-mm-dd' }">
+      <!-- <select ng-model = "max_month">
         <option selected>Month</option>
         <option value = 01>Jan</option>
         <option value = 02>Feb</option>
@@ -35,11 +37,17 @@
         <option value = 12>Dec</option>
       </select>
       <input type = "number" maxlength = "2" ng-model = "max_day" placeholder = "Day">
-      <input type = "number" maxlength = "4" ng-model = "max_year" placeholder = "Year">
+      <input type = "number" maxlength = "4" ng-model = "max_year" placeholder = "Year"> -->
       <button type="button" ng-click = "showMe()">Go</button>
 </div>
 <div id = "spendingDisplay">
   <h2>Your Spending:</h2>
-  <ul ng-repeat = "date in alltheDates">
-    <li>{{ date.category }}: {{ date.amount }}</li>
+  <ul>
+    <li>Rent: {{ alltheDates.Rent }}</li>
+    <li>Utilities: {{ alltheDates.Utilities }}</li>
+    <li>Miscellaneous Bills: {{ alltheDates.MiscBills }}</li>
+    <li>Transportation: {{ alltheDates.Transportation }}</li>
+    <li>Groceries: {{ alltheDates.Groceries }}</li>
+    <li>Entertainment: {{ alltheDates.Entertainment }}</li>
+    <li>Other: {{ alltheDates.Other }}</li>
 </div>
